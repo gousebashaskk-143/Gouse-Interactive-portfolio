@@ -2,35 +2,29 @@ import { useEffect, useState } from "react";
 
 export default function Projects() {
   const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("/projects.json")
       .then((res) => res.json())
-      .then((data) => {
-        setProjects(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Error loading projects:", err);
-        setLoading(false);
-      });
+      .then((data) => setProjects(data))
+      .catch((err) => console.error(err));
   }, []);
 
   return (
-    <section id="projects" className="py-24 bg-slate-900 text-white">
-      <h2 className="text-4xl font-bold text-center mb-12">Projects</h2>
+    <section
+      id="projects"
+      className="py-24 bg-slate-900 text-white flex justify-center"
+    >
+      <div className="w-full max-w-6xl px-6 text-center">
+        <h2 className="text-4xl font-bold mb-12">Projects</h2>
 
-      {loading ? (
-        <p className="text-center text-gray-400">Loading projects...</p>
-      ) : (
-        <div className="max-w-6xl mx-auto grid gap-8 md:grid-cols-2 px-6">
+        <div className="grid gap-10 md:grid-cols-2 place-items-center">
           {projects.map((project, index) => (
             <div
               key={index}
-              className="bg-slate-800 p-6 rounded-xl shadow-lg hover:scale-105 transition"
+              className="w-full max-w-md bg-slate-800 rounded-xl p-6 shadow-lg hover:scale-105 transition"
             >
-              <h3 className="text-2xl font-semibold mb-2">
+              <h3 className="text-2xl font-semibold mb-3">
                 {project.title}
               </h3>
 
@@ -38,20 +32,20 @@ export default function Projects() {
                 {project.description}
               </p>
 
-              <div className="flex flex-wrap gap-2">
-                {project.tech.map((t, i) => (
+              <div className="flex flex-wrap justify-center gap-2">
+                {project.tech.map((tech, i) => (
                   <span
                     key={i}
                     className="bg-yellow-400 text-black px-3 py-1 rounded-full text-sm font-medium"
                   >
-                    {t}
+                    {tech}
                   </span>
                 ))}
               </div>
             </div>
           ))}
         </div>
-      )}
+      </div>
     </section>
   );
 }
