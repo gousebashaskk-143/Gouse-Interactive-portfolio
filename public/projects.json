@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "title": "Interactive Portfolio",
+    "description": "Personal portfolio built with React, Tailwind, and AI.",
+    "tech": ["React", "Tailwind", "Node.js"]
+  },
+  {
+    "id": 2,
+    "title": "Task Manager App",
+    "description": "CRUD app with REST API.",
+    "tech": ["Node.js", "Express", "MongoDB"]
+  }
+]

@@ -5,7 +5,8 @@ export default function Projects() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/projects")
+    fetch("/api/projects.json")
+
       .then((res) => res.json())
       .then((data) => {
         setProjects(data);
